@@ -14,7 +14,7 @@ function Home() {
 
   const restaurants = [
     {
-      id: 7,
+      id: 1,
       name: "Campus Cafe",
       type: "Snacks",
       eta: "5-8 min",
@@ -23,7 +23,7 @@ function Home() {
         "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=80",
     },
     {
-      id: 8,
+      id: 2,
       name: "Burger Hub",
       type: "Burgers",
       eta: "8-10 min",
@@ -32,7 +32,7 @@ function Home() {
         "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80",
     },
     {
-      id: 9,
+      id: 3,
       name: "Coffee Corner",
       type: "Coffee",
       eta: "3-5 min",

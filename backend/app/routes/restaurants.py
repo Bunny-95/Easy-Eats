@@ -48,11 +48,19 @@ def seed_data(db: Session = Depends(get_db)):
         is_open=True
     )
 
-    db.add_all([r1, r2])
+    r3 = Restaurant(
+    owner_id=1,
+    name="Coffee Corner",
+    category="Coffee",
+    is_open=True
+)
+
+    db.add_all([r1, r2, r3])
     db.commit()
 
     db.refresh(r1)
     db.refresh(r2)
+    db.refresh(r3)
 
     items = [
         MenuItem(
@@ -78,7 +86,19 @@ def seed_data(db: Session = Depends(get_db)):
             name="Burger",
             price=70,
             prep_time=7
-        )
+        ),
+        MenuItem(
+    restaurant_id=r3.id,
+    name="Cold Coffee",
+    price=60,
+    prep_time=3
+),
+MenuItem(
+    restaurant_id=r3.id,
+    name="Latte",
+    price=80,
+    prep_time=4
+)
     ]
 
     db.add_all(items)
