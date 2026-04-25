@@ -26,6 +26,16 @@ function Cart() {
 
  const placeOrder = async () => {
   try {
+    if (cart.length === 0) {
+      alert("Cart is empty");
+      return;
+    }
+
+    if (!window.Razorpay) {
+      alert("Payment system loading. Please try again.");
+      return;
+    }
+
     const pay = await api.post(
       "/payment/create-order?amount=" + total
     );
@@ -38,23 +48,28 @@ function Cart() {
       description: "Campus Food Order",
       order_id: pay.data.id,
 
-      handler: async function (response) {
+      handler: async function () {
         try {
           const res = await api.post(
             "/orders/place?user_id=1&restaurant_id=" +
-cart[0].restaurant_id +
-"&total=" +
-total
+              cart[0].restaurant_id +
+              "&total=" +
+              total
           );
 
-          const id = res.data.order_id;
+          const orderId =
+            res.data.order_id;
 
           clearCart();
 
-          navigate("/track/" + id);
+          navigate(
+            "/track/" + orderId
+          );
         } catch (error) {
           console.log(error);
-          alert("Order creation failed");
+          alert(
+            "Order creation failed"
+          );
         }
       },
 
@@ -74,18 +89,34 @@ total
 
       modal: {
         ondismiss: function () {
-          console.log("Payment popup closed");
+          console.log(
+            "Payment popup closed"
+          );
         },
       },
+
+      retry: {
+        enabled: true,
+      },
+
+      timeout: 300,
     };
 
-    const razorpay = new window.Razorpay(options);
+    const razorpay =
+      new window.Razorpay(
+        options
+      );
+
     razorpay.open();
   } catch (error) {
     console.log(error);
-    alert("Payment failed");
+    alert(
+      "Payment failed. Please try again."
+    );
   }
 };
+
+    
 
   return (
     <div className="max-w-md md:max-w-3xl xl:max-w-7xl mx-auto min-h-screen bg-zinc-50 pb-32">
