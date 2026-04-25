@@ -49,29 +49,31 @@ function Cart() {
       order_id: pay.data.id,
 
       handler: async function () {
-        try {
-          const res = await api.post(
-            "/orders/place?user_id=1&restaurant_id=" +
-              cart[0].restaurant_id +
-              "&total=" +
-              total
-          );
+  try {
+    const restaurantId =
+      cart?.[0]?.restaurant_id || 1;
 
-          const orderId =
-            res.data.order_id;
+    const res = await api.post(
+      "/orders/place?user_id=1&restaurant_id=" +
+        restaurantId +
+        "&total=" +
+        total
+    );
 
-          clearCart();
+    const orderId =
+      res.data.order_id;
 
-          navigate(
-            "/track/" + orderId
-          );
-        } catch (error) {
-          console.log(error);
-          alert(
-            "Order creation failed"
-          );
-        }
-      },
+    clearCart();
+
+    navigate(
+      "/track/" + orderId
+    );
+  } catch (error) {
+    console.log(error);
+    alert("Order creation failed");
+  }
+  console.log(cart);
+},
 
       prefill: {
         name: "Easy Eats User",
