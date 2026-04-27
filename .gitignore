@@ -1,6 +1,80 @@
-venv/
-__pycache__/
-*.pyc
+# -----------------------
+# ENV / Secrets
+# -----------------------
 .env
+.env.local
+.env.production
+.env.development
+*.env
+
+# -----------------------
+# Node / Frontend
+# -----------------------
 node_modules/
 dist/
+build/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# -----------------------
+# Python / Backend
+# -----------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# -----------------------
+# IDE / Editor
+# -----------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# -----------------------
+# OS Files
+# -----------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------
+# Logs
+# -----------------------
+logs/
+*.log
+
+# -----------------------
+# Temporary files
+# -----------------------
+tmp/
+temp/
+
+# -----------------------
+# Build Artifacts
+# -----------------------
+*.zip
+*.tar.gz
+
+# -----------------------
+# Optional uploads/cache
+# -----------------------
+uploads/
+.cache/
